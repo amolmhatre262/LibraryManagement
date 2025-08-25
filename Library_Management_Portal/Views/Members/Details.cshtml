@@ -1,0 +1,24 @@
+﻿@model Library.Models.Members
+
+@{
+    ViewData["Title"] = "Member Details";
+}
+
+<h2>Member Details</h2>
+
+<div class="card">
+    <div class="card-header">
+        @Model.FullName
+    </div>
+    <div class="card-body">
+        <div class="mb-2"><strong>Member ID:</strong> @Model.MemberId</div>
+        <div class="mb-2"><strong>Full Name:</strong> @Model.FullName</div>
+        <div class="mb-2"><strong>Email:</strong> @Model.Email</div>
+        <div class="mb-2"><strong>Mobile:</strong> @Model.Mobile</div>
+        <div class="mb-2"><strong>Is Active:</strong> @(Model.IsActive ? "Yes" : "No")</div>
+        <div class="mb-2"><strong>Created Date:</strong> @Model.CreatedDate.ToString("yyyy-MM-dd")</div>
+
+        <a href="@Url.Action("Index", "Members")" class="btn btn-secondary">Back to List</a>
+        <a href="@Url.Action("Edit", "Members", new { id = Model.MemberId })" class="btn btn-warning">Edit</a>
+    </div>
+</div>

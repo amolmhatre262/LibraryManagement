@@ -1,0 +1,69 @@
+﻿@model List<Library.Models.BookIssue>
+
+<h2>Issue Book</h2>
+
+<form asp-action="Issue" method="post" id="issueForm">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label class="form-label">Book</label>
+        <select name="BookId" class="form-select">
+            <option value="">-- Select Book --</option>
+            @foreach (var book in ViewBag.Books)
+            {
+                <option value="@book.BookId">@book.Title (Available: @book.AvailableCopies)</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Member</label>
+        <select name="MemberId" class="form-select">
+            <option value="">-- Select Member --</option>
+            @foreach (var member in ViewBag.Members)
+            {
+                <option value="@member.MemberId">@member.FullName</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Issue Book</button>
+</form>
+
+<hr />
+
+<h3>Issued Books</h3>
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Member</th>
+                <th>Issue Date</th>
+                <th>Return Date</th>
+                <th>Fine</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var issue in Model)
+            {
+                <tr>
+                    <td>@issue.BookTitle</td>
+                    <td>@issue.MemberName</td>
+                    <td>@issue.IssueDate.ToShortDateString()</td>
+                    <td>@(issue.ReturnDate?.ToShortDateString() ?? "Not Returned")</td>
+                    <td>@issue.FineAmount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No books have been issued yet.</p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

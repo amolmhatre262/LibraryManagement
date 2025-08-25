@@ -1,0 +1,41 @@
+﻿@model List<Library.Models.Books>
+
+@{
+    ViewBag.Title = "Books List";
+}
+
+<h2>Books List</h2>
+
+<p><a href="@Url.Action("Create")" class="btn btn-primary">Add New Book</a></p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>BookId</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Total Copies</th>
+            <th>Available Copies</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.BookId</td>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.ISBN</td>
+                <td>@book.TotalCopies</td>
+                <td>@book.AvailableCopies</td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = book.BookId })" class="btn btn-info btn-sm">Details</a>
+                    <a href="@Url.Action("Edit", new { id = book.BookId })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("Delete", new { id = book.BookId })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

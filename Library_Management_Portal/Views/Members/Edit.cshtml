@@ -1,0 +1,42 @@
+﻿@model Library.Models.Members
+
+@{
+    ViewData["Title"] = "Edit Member";
+}
+
+<h2>Edit Member</h2>
+
+<form asp-action="Edit" method="post">
+    <!-- Hidden field for MemberId -->
+    <input type="hidden" asp-for="MemberId" />
+
+    <div class="mb-3">
+        <label asp-for="FullName" class="form-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Mobile" class="form-label"></label>
+        <input asp-for="Mobile" class="form-control" />
+        <span asp-validation-for="Mobile" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input asp-for="IsActive" class="form-check-input" />
+        <label asp-for="IsActive" class="form-check-label">Active</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

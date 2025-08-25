@@ -1,0 +1,33 @@
+﻿@model System.Data.DataTable
+@{
+    ViewData["Title"] = "Overdue Members";
+}
+
+<div class="container mt-4">
+    <h2>Overdue Members</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Member</th>
+                <th>Book</th>
+                <th>Issue Date</th>
+                <th>Due Date</th>
+                <th>Days Overdue</th>
+                <th>Fine (₹)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (System.Data.DataRow row in Model.Rows)
+            {
+                <tr>
+                    <td>@row["FullName"]</td>
+                    <td>@row["Title"]</td>
+                    <td>@Convert.ToDateTime(row["IssueDate"]).ToShortDateString()</td>
+                    <td>@Convert.ToDateTime(row["DueDate"]).ToShortDateString()</td>
+                    <td>@row["DaysOverdue"]</td>
+                    <td>@row["FineAmount"]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Library.Models.OverdueReportDto>
+
+<h2>Overdue Members Report</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Member Name</th>
+            <th>Book Title</th>
+            <th>Issue Date</th>
+            <th>Due Date</th>
+            <th>Overdue Days</th>
+            <th>Fine Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MemberName</td>
+                <td>@item.BookTitle</td>
+                <td>@item.IssueDate.ToShortDateString()</td>
+                <td>@item.DueDate.ToShortDateString()</td>
+                <td>@item.OverdueDays</td>
+                <td>@item.FineAmount</td>
+            </tr>
+        }
+    </tbody>
+</table>

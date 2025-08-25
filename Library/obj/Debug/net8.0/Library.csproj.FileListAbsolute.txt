@@ -1,0 +1,12 @@
+D:\My Practice\Four_Power_Interview_Project\Project\Library\bin\Debug\net8.0\Library.deps.json
+D:\My Practice\Four_Power_Interview_Project\Project\Library\bin\Debug\net8.0\Library.dll
+D:\My Practice\Four_Power_Interview_Project\Project\Library\bin\Debug\net8.0\Library.pdb
+D:\My Practice\Four_Power_Interview_Project\Project\Library\obj\Debug\net8.0\Library.csproj.AssemblyReference.cache
+D:\My Practice\Four_Power_Interview_Project\Project\Library\obj\Debug\net8.0\Library.GeneratedMSBuildEditorConfig.editorconfig
+D:\My Practice\Four_Power_Interview_Project\Project\Library\obj\Debug\net8.0\Library.AssemblyInfoInputs.cache
+D:\My Practice\Four_Power_Interview_Project\Project\Library\obj\Debug\net8.0\Library.AssemblyInfo.cs
+D:\My Practice\Four_Power_Interview_Project\Project\Library\obj\Debug\net8.0\Library.csproj.CoreCompileInputs.cache
+D:\My Practice\Four_Power_Interview_Project\Project\Library\obj\Debug\net8.0\Library.dll
+D:\My Practice\Four_Power_Interview_Project\Project\Library\obj\Debug\net8.0\refint\Library.dll
+D:\My Practice\Four_Power_Interview_Project\Project\Library\obj\Debug\net8.0\Library.pdb
+D:\My Practice\Four_Power_Interview_Project\Project\Library\obj\Debug\net8.0\ref\Library.dll

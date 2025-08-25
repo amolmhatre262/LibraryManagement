@@ -1,0 +1,45 @@
+﻿@model List<Library.Models.Members>
+
+@{
+    ViewData["Title"] = "Members List";
+}
+
+<h2>Members List</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Members")" class="btn btn-primary">Add New Member</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Member ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Is Active</th>
+                <th>Created Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var member in Model)
+            {
+                <tr>
+                    <td>@member.MemberId</td>
+                    <td>@member.FullName</td>
+                    <td>@member.Email</td>
+                    <td>@member.Mobile</td>
+                    <td>@(member.IsActive ? "Yes" : "No")</td>
+                    <td>@member.CreatedDate.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a href="@Url.Action("Details", new { id = member.MemberId })" class="btn btn-info btn-sm">Details</a>
+                        <a href="@Url.Action("Edit", new { id = member.MemberId })" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="@Url.Action("Delete", new { id = member.MemberId })" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

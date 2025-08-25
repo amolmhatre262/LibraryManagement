@@ -1,0 +1,36 @@
+﻿@model Library.Models.Books
+
+@{
+    ViewBag.Title = "Edit Book";
+}
+
+<h2>Edit Book</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.BookId)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Author)
+        @Html.TextBoxFor(m => m.Author, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ISBN)
+        @Html.TextBoxFor(m => m.ISBN, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotalCopies)
+        @Html.TextBoxFor(m => m.TotalCopies, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.AvailableCopies)
+        @Html.TextBoxFor(m => m.AvailableCopies, new { @class = "form-control" })
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success">Update</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+}

@@ -1,0 +1,41 @@
+﻿@model List<Library.Models.BookIssue>
+
+<h2>Return Books</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Member</th>
+            <th>Issue Date</th>
+            <th>Due Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var issue in Model)
+        {
+            <tr>
+                <td>@issue.BookTitle</td>
+                <td>@issue.MemberName</td>
+                <td>@issue.IssueDate.ToString("yyyy-MM-dd")</td>
+                <td>@issue.DueDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <form asp-action="ReturnBook" method="post">
+                        <input type="hidden" name="issueId" value="@issue.IssueId" />
+                        <button type="submit" class="btn btn-success">Return</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,103 @@
+﻿@using Library.Models
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Dashboard";
+
+    var issuesLast7Days = ViewBag.IssuesLast7Days as List<IssueStatsDto>;
+    var categoryData = ViewBag.CategoryData as List<CategoryStatsDto>;
+
+    var barLabels = issuesLast7Days?.Select(x => x.Date).ToList() ?? new List<string>();
+    var barValues = issuesLast7Days?.Select(x => x.Count).ToList() ?? new List<int>();
+
+    var pieLabels = categoryData?.Select(x => x.Category).ToList() ?? new List<string>();
+    var pieValues = categoryData?.Select(x => x.Count).ToList() ?? new List<int>();
+}
+
+<div class="container mt-4">
+    
+    <h2 class="text-center mb-4">📚 Library Dashboard</h2>
+    <a href="/Account/Logout" class="btn btn-outline-danger btn-lg">🚪 Logout</a>
+    
+    <!-- Action Buttons -->
+    <div class="row mb-4 text-center">
+        <div class="col-md-3">
+            <a href="/Books/Index" class="btn btn-primary btn-lg w-100">➕ Books Masters</a>
+        </div>
+        <div class="col-md-3">
+            <a href="/Members/Index" class="btn btn-success btn-lg w-100">👤 Member Masters</a>
+        </div>
+        <div class="col-md-3">
+            <a href="/BookIssue/Issue" class="btn btn-warning btn-lg w-100">📖 Issue Book</a>
+        </div>
+        <div class="col-md-3">
+            <a href="/BookIssue/Return" class="btn btn-danger btn-lg w-100">🔄 Return Book</a>
+        </div>
+    </div>
+
+    <!-- Reports Buttons -->
+    <div class="row mb-4 text-center">
+        <div class="col-md-6">
+            <a href="/BookIssue/OverdueMembers" class="btn btn-dark btn-lg w-100">📜 Overdue Members Report</a>
+        </div>
+        <div class="col-md-6">
+            @* <a href="/Reports/BookHistory?id=1" class="btn btn-secondary btn-lg w-100">📘 Book History</a> *@
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Books Issued (Last 7 Days)</h5>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Books by Category</h5>
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const barLabels = @Html.Raw(JsonConvert.SerializeObject(barLabels));
+    const barData = @Html.Raw(JsonConvert.SerializeObject(barValues));
+
+    new Chart(document.getElementById('barChart'), {
+        type: 'bar',
+        data: {
+            labels: barLabels,
+            datasets: [{
+                label: 'Books Issued',
+                data: barData,
+                backgroundColor: 'rgba(54, 162, 235, 0.7)'
+            }]
+        }
+    });
+
+    const pieLabels = @Html.Raw(JsonConvert.SerializeObject(pieLabels));
+    const pieData = @Html.Raw(JsonConvert.SerializeObject(pieValues));
+
+    new Chart(document.getElementById('pieChart'), {
+        type: 'pie',
+        data: {
+            labels: pieLabels,
+            datasets: [{
+                data: pieData,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)'
+                ]
+            }]
+        }
+    });
+</script>
