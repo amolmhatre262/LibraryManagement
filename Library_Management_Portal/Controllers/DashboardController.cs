@@ -1,9 +1,11 @@
 ﻿using Library.Models;
 using Library.Repositories;
+using Library_Management_Portal.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library_Management_Portal.Controllers
 {
+    //[SessionAuthorize]
     public class DashboardController : Controller
     {
         private readonly BookIssueRepository _repo;
