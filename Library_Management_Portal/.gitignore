@@ -1,0 +1,68 @@
+﻿## Ignore Visual Studio temporary files, build results, and user-specific files
+
+# Build results
+bin/
+obj/
+
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider IDE files
+.idea/
+
+# Visual Studio Code settings
+.vscode/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+
+# MSBuild files
+*.dbmdl
+*.bak
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Others
+*.cache
+*.ilk
+*.meta
+*.obj
+*.pdb
+*.idb
+*.ipdb
+*.class
+*.dll
+*.exe
+*.log
+*.sdf
+*.sqlite
+*.sqlite3
+*.db
+*.DS_Store
+
+# Node / frontend (if using Angular/React inside project)
+node_modules/
+dist/
+build/
+.env
+
+# Coverage files
+coverage/
+*.coverage
+*.coveragexml
+TestResults/
+*.trx
+
+# Temporary files
+*.tmp
+*.temp
