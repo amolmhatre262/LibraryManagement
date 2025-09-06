@@ -15,11 +15,11 @@ namespace Library_Management_Portal.Middleware
         {
             try
             {
-                await _next(context); // continue pipeline
+                await _next(context);
             }
             catch (Exception ex)
             {
-                LogError(ex); // log to file
+                LogError(ex);
                 await HandleExceptionAsync(context, ex);
             }
         }
