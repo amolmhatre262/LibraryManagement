@@ -1,29 +1,36 @@
-﻿@model System.Data.DataTable
-@{
-    ViewData["Title"] = "Book History";
-}
+﻿@model IEnumerable<Library.Models.BookHistoryDto>
 
-<div class="container mt-4">
-    <h2>Book History (ID: @ViewBag.BookId)</h2>
+<h2>Book History</h2>
+
+@if (!Model.Any())
+{
+    <p>No history found for this book.</p>
+}
+else
+{
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>Issue ID</th>
                 <th>Member</th>
                 <th>Issue Date</th>
                 <th>Due Date</th>
                 <th>Return Date</th>
+                <th>Fine Amount</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (System.Data.DataRow row in Model.Rows)
+            @foreach (var record in Model)
             {
                 <tr>
-                    <td>@row["FullName"]</td>
-                    <td>@Convert.ToDateTime(row["IssueDate"]).ToShortDateString()</td>
-                    <td>@Convert.ToDateTime(row["DueDate"]).ToShortDateString()</td>
-                    <td>@(row["ReturnDate"] == DBNull.Value ? "Not Returned" : Convert.ToDateTime(row["ReturnDate"]).ToShortDateString())</td>
+                    <td>@record.IssueId</td>
+                    <td>@record.MemberName</td>
+                    <td>@record.IssueDate.ToShortDateString()</td>
+                    <td>@record.DueDate.ToShortDateString()</td>
+                    <td>@(record.ReturnDate?.ToShortDateString() ?? "Not Returned")</td>
+                    <td>₹@record.FineAmount</td>
                 </tr>
             }
         </tbody>
     </table>
-</div>
+}

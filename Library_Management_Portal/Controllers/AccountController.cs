@@ -23,11 +23,23 @@ namespace Library_Management_Portal.Controllers
             return View();
         }
 
+        
+
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
+
+                //try
+                //{
+                //    throw new Exception("Test exception: Something went wrong while validating login!");
+                //}
+                //catch (global::System.Exception)
+                //{
+
+                //    throw;
+                //}
                 string passwordHash = ComputeSha256Hash(model.Password);
 
                 using (SqlConnection conn = new SqlConnection(_connectionString))
