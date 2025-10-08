@@ -3,4 +3,14 @@
 ################################################################################
 
 /Library/obj/Debug/net8.0
+<<<<<<< HEAD
 /.vs
+=======
+/Library_Management_Portal/.vs/Library_Management_Portal
+/Library/bin/Debug/net8.0/Library.dll
+/Library/bin/Debug/net8.0/Library.pdb
+/.vs
+/Library/obj
+>>>>>>> ac7a9211a286e0f054580bc2853797b56f6e75c9
+/Library/bin/Debug/net8.0/Library.dll
+/Library/bin/Debug/net8.0/Library.pdb

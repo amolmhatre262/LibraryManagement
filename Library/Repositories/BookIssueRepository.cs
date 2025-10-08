@@ -360,6 +360,47 @@ namespace Library.Repositories
             return overdueList;
         }
 
+        public List<BookHistoryDto> GetBookHistory(int bookId)
+        {
+            var history = new List<BookHistoryDto>();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                string query = @"
+            SELECT bi.IssueId, b.Title AS BookTitle, m.FullName AS MemberName,
+                   bi.IssueDate, bi.DueDate, bi.ReturnDate, bi.FineAmount
+            FROM BookIssues bi
+            INNER JOIN Books_Master b ON bi.BookId = b.BookId
+            INNER JOIN Members m ON bi.MemberId = m.MemberId
+            WHERE bi.BookId = @BookId
+            ORDER BY bi.IssueDate DESC;";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@BookId", bookId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            history.Add(new BookHistoryDto
+                            {
+                                IssueId = Convert.ToInt32(reader["IssueId"]),
+                                BookTitle = reader["BookTitle"].ToString(),
+                                MemberName = reader["MemberName"].ToString(),
+                                IssueDate = Convert.ToDateTime(reader["IssueDate"]),
+                                DueDate = Convert.ToDateTime(reader["DueDate"]),
+                                ReturnDate = reader["ReturnDate"] == DBNull.Value ? null : Convert.ToDateTime(reader["ReturnDate"]),
+                                FineAmount = reader["FineAmount"] == DBNull.Value ? null : Convert.ToDecimal(reader["FineAmount"])
+                            });
+                        }
+                    }
+                }
+            }
+
+            return history;
+        }
 
 
 
